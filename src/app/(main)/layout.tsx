@@ -8,12 +8,11 @@ export default function Layout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="flex flex-col min-h-screen">
         <header>
           <TopNav />
         </header>
-
-        {children}
+        <main className="flex-1">{children}</main>
         <BottomNav />
       </body>
     </html>
