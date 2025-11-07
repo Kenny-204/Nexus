@@ -1,0 +1,85 @@
+// app/(auth)/login/page.tsx
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { useState } from "react";
+
+export default function LoginPage() {
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    // simulate login
+    setTimeout(() => setLoading(false), 1500);
+  }
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-gray-50">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="w-full max-w-sm rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:max-w-md lg:max-w-md"
+      >
+        <h1 className="text-center text-2xl font-semibold text-gray-800">
+          Welcome back
+        </h1>
+        <p className="mt-1 text-center text-gray-500 text-sm">
+          Sign in to continue
+        </p>
+
+        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+          <div>
+            <label htmlFor="email" className="block text-sm text-gray-600">
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              required
+              className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-700 focus:ring-0"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password" className="block text-sm text-gray-600">
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              required
+              className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-700 focus:ring-0"
+            />
+          </div>
+
+          <div className="flex justify-end">
+            <Link
+              href="/forgot-password"
+              className="text-sm text-gray-600 hover:text-gray-800"
+            >
+              Forgot password?
+            </Link>
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full rounded-lg bg-black py-2 text-white text-sm font-medium transition hover:bg-gray-900 disabled:opacity-50"
+          >
+            {loading ? "Signing in..." : "Sign in"}
+          </button>
+        </form>
+
+        <p className="mt-4 text-center text-sm text-gray-600">
+          Don’t have an account?{" "}
+          <Link href="/signup" className="text-gray-900 font-medium">
+            Create one
+          </Link>
+        </p>
+      </motion.div>
+    </div>
+  );
+}
