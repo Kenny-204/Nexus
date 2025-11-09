@@ -95,7 +95,7 @@ export default function Page() {
 
         <p className="mt-4 text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <Link href="/auth/login" className="text-gray-900 font-medium">
+          <Link href="/login" className="text-gray-900 font-medium">
             Sign in
           </Link>
         </p>
