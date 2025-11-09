@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Nexus",
   description: "A marketplace for unilag students",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
