@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-blue-50 lg:bg-gray-50">
+    <main className="min-h-screen w-full flex items-center justify-center bg-blue-50 lg:bg-gray-50">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
