@@ -97,7 +97,7 @@ function HorizontalScroll({ items }: { items: typeof goods }) {
         >
           <div className="relative w-full h-36 rounded-t-2xl overflow-hidden">
             <Image
-              src={item.image}
+              src="fan.webp"
               alt={item.name}
               fill
               className="object-cover"
