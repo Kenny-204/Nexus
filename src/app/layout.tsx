@@ -1,17 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
+
 import "./globals.css";
-import BottomNav from "@/components/BottomNav";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"], weight: ["400", "500"] });
+const poppins = Poppins({ subsets: ["latin"], weight: ["600", "700"] });
 
 export const metadata: Metadata = {
   title: "Nexus",
@@ -30,11 +22,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
-      >
-        {children}{" "}
-      </body>
+      <body className={`${inter.className}antialiased `}>{children} </body>
     </html>
   );
 }
