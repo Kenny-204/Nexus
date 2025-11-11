@@ -1,7 +1,7 @@
 {
   "name": "Nexus Marketplace",
   "short_name": "Nexus",
-  "start_url": "/",
+  "start_url": "/home",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
