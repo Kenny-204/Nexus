@@ -12,9 +12,9 @@ export default function Layout({
         <header>
           <TopNav />
         </header>
-        <main className="min-h-screen bg-gray-50 text-gray-900">
+        <main className="flex-1 bg-gray-50 text-gray-900 pb-[62px]">
           <div className="max-w-5xl mx-auto">{children}</div>
-        </main>{" "}
+        </main>
         <BottomNav />
       </body>
     </html>
