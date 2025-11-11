@@ -91,7 +91,7 @@ function HorizontalScroll({ items }: { items: typeof goods }) {
     <div className="flex gap-4 px-4 overflow-x-auto no-scrollbar py-2">
       {items.map((item) => (
         <Link
-          href={`${item.id}`}
+          href={`goods/${item.id}`}
           key={item.id}
           className="min-w-[160px] bg-white rounded-2xl shadow-md border border-gray-100 flex-shrink-0 hover:shadow-lg transition-shadow"
         >
