@@ -7,9 +7,12 @@ export default function Page() {
           <p className="text-sm text-gray-500">
             Explore physical products, items, and deals near you.
           </p>
-          <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700">
+          <Link
+            href="/home/goods"
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700"
+          >
             View Goods
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -19,12 +22,14 @@ export default function Page() {
           <p className="text-sm text-gray-500">
             Find people offering professional or freelance services.
           </p>
-          <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700">
+          <Link
+            href="/home/services"
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700"
+          >
             View Services
-          </button>
+          </Link>
         </div>
       </div>
     </main>
   );
 }
-
