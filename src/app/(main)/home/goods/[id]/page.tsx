@@ -44,7 +44,7 @@ export default function Page() {
       {/* Product Images */}
       <div className="relative w-full h-64 rounded-2xl overflow-hidden mb-4">
         <Image
-          src={product.images[0]}
+          src="fan.webp"
           alt={product.name}
           fill
           className="object-cover"
@@ -70,7 +70,7 @@ export default function Page() {
       <div className="flex items-center gap-3 mb-4 p-3 bg-white rounded-2xl shadow-sm border border-gray-100">
         <div className="w-12 h-12 relative rounded-full overflow-hidden">
           <Image
-            src={seller.profileImage}
+            src="fan.webp"
             alt={seller.name}
             fill
             className="object-cover"
