@@ -88,14 +88,14 @@ function Section({ title }: { title: string }) {
 // Product Scroller
 function HorizontalScroll({ items }: { items: typeof goods }) {
   return (
-    <div className="flex overflow-x-auto gap-3 px-4 no-scrollbar">
+    <div className="flex gap-4 px-4 overflow-x-auto no-scrollbar py-2">
       {items.map((item) => (
         <Link
           href={`/goods/${item.id}`}
           key={item.id}
-          className="min-w-[140px] bg-white rounded-2xl shadow-sm border border-gray-100 flex-shrink-0"
+          className="min-w-[160px] bg-white rounded-2xl shadow-md border border-gray-100 flex-shrink-0 hover:shadow-lg transition-shadow"
         >
-          <div className="relative w-full h-32 rounded-t-2xl overflow-hidden">
+          <div className="relative w-full h-36 rounded-t-2xl overflow-hidden">
             <Image
               src={item.image}
               alt={item.name}
@@ -103,7 +103,7 @@ function HorizontalScroll({ items }: { items: typeof goods }) {
               className="object-cover"
             />
           </div>
-          <div className="p-2">
+          <div className="p-3">
             <p className="text-sm font-medium truncate">{item.name}</p>
             <div className="flex items-center gap-1 text-yellow-500 text-xs">
               <Star size={12} fill="currentColor" />

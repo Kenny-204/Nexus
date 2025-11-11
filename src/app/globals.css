@@ -50,4 +50,12 @@ body {
   .btn-accent {
     @apply bg-[var(--color-accent)] text-white font-medium py-2 px-4 rounded-lg hover:opacity-90 transition;
   }
+} /* in globals.css or component CSS */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
