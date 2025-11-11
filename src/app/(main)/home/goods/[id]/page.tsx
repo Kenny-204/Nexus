@@ -29,7 +29,12 @@ const seller = {
 // Mock reviews
 const reviews = [
   { id: 1, name: "Ade", rating: 5, comment: "Great speaker, loud and clear!" },
-  { id: 2, name: "Chidi", rating: 4, comment: "Good quality but a bit pricey." },
+  {
+    id: 2,
+    name: "Chidi",
+    rating: 4,
+    comment: "Good quality but a bit pricey.",
+  },
   { id: 3, name: "Tosin", rating: 5, comment: "Love it! Battery lasts long." },
 ];
 
@@ -50,7 +55,7 @@ export default function ProductPage() {
       {/* Product Images */}
       <div className="relative w-full h-64 rounded-2xl overflow-hidden mb-4">
         <Image
-          src={product.images[0]}
+          src="fan.webp"
           alt={product.name}
           fill
           className="object-cover"
@@ -63,7 +68,9 @@ export default function ProductPage() {
         <div className="flex items-center gap-2 text-yellow-500 mb-1">
           <Star size={16} fill="currentColor" />
           <span className="text-gray-700 font-medium">{product.rating}</span>
-          <span className="text-gray-400 text-sm">({product.reviewsCount} reviews)</span>
+          <span className="text-gray-400 text-sm">
+            ({product.reviewsCount} reviews)
+          </span>
         </div>
         <p className="text-gray-500 text-sm mb-1">{product.category}</p>
         <p className="text-gray-500 text-sm mb-1">{product.hostel}</p>
@@ -73,7 +80,7 @@ export default function ProductPage() {
       <div className="flex items-center gap-3 mb-4 p-3 bg-white rounded-2xl shadow-sm border border-gray-100">
         <div className="w-12 h-12 relative rounded-full overflow-hidden">
           <Image
-            src={seller.profileImage}
+            src="fan.webp"
             alt={seller.name}
             fill
             className="object-cover"
@@ -84,7 +91,9 @@ export default function ProductPage() {
           <div className="flex items-center gap-1 text-yellow-500 text-sm">
             <Star size={12} fill="currentColor" />
             <span className="text-gray-700">{seller.rating}</span>
-            <span className="text-gray-400 text-xs">({seller.totalReviews} reviews)</span>
+            <span className="text-gray-400 text-xs">
+              ({seller.totalReviews} reviews)
+            </span>
           </div>
         </div>
         <a
@@ -139,4 +148,3 @@ export default function ProductPage() {
     </main>
   );
 }
-
