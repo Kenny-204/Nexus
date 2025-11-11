@@ -12,7 +12,9 @@ export default function Layout({
         <header>
           <TopNav />
         </header>
-        <main className="flex-1">{children}</main>
+        <main className="min-h-screen bg-gray-50 text-gray-900">
+          <div className="max-w-5xl mx-auto">{children}</div>
+        </main>{" "}
         <BottomNav />
       </body>
     </html>
