@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Page() {
   return (
     <main className="min-h-screen bg-blue-50 p-5 flex flex-col items-center justify-center lg:flex-row lg:gap-6 lg:p-10">
