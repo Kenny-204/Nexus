@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   title: "Nexus",
   description: "A marketplace for unilag students",
   manifest: "/manifest.json",
-  themeColor: "#ffffff", // m
 };
 
 export default function RootLayout({

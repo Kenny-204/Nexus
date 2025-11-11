@@ -7,7 +7,7 @@ export default function BottomNav() {
       <ul className="flex justify-around">
         <li>
           <Link
-            href="/"
+            href="/home"
             className="flex flex-col items-center justify-center p-3"
           >
             <Home size={15} />
@@ -16,7 +16,7 @@ export default function BottomNav() {
         </li>
         <li>
           <Link
-            href="/"
+            href="/search"
             className="flex flex-col items-center justify-center p-3"
           >
             <Search size={15} />
@@ -25,7 +25,7 @@ export default function BottomNav() {
         </li>{" "}
         <li>
           <Link
-            href="/"
+            href="/messages"
             className="flex flex-col items-center justify-center p-3"
           >
             <MessageSquare size={15} />
@@ -34,7 +34,7 @@ export default function BottomNav() {
         </li>{" "}
         <li>
           <Link
-            href="/"
+            href="/profile"
             className="flex flex-col items-center justify-center p-3"
           >
             <User size={15} />
