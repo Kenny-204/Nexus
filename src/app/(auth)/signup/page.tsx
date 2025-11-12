@@ -71,6 +71,25 @@ const Signup: React.FC = () => {
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
           </div>
+          <div className="relative">
+            <Lock
+              className="absolute left-4 top-3.5 text-[var(--color-primary)]"
+              size={20}
+            />
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              className="input pl-12 pr-12"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-3.5 text-gray-500 hover:text-gray-700"
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </div>
 
           {/* Submit */}
           <button type="submit" className="btn-primary w-full mt-2">

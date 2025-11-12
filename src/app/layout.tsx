@@ -4,6 +4,8 @@ import { Comic_Neue, Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { Authprovider } from "@/lib/contexts/AuthContext";
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500"] });
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500"] });
+
 //const comicNeue = Comic_Neue({ subsets: ["latin"] });
 const comicNeue = Comic_Neue({
   weight: ["300", "400", "700"],
@@ -27,7 +29,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </head>
-      <body className={`${comicNeue.className}antialiased `}>
+      <body className={`${poppins.className}antialiased `}>
         <Authprovider>{children}</Authprovider>
       </body>
     </html>
