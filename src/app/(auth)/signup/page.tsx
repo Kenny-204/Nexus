@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Mail, Lock, User, Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
 
 const Signup: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,7 +15,7 @@ const Signup: React.FC = () => {
           e
         </div>
         <span className="text-[var(--color-primary)] font-semibold text-lg">
-          CAMPORA
+          Nexus
         </span>
       </div>
 
@@ -109,20 +110,16 @@ const Signup: React.FC = () => {
           type="button"
           className="btn-ghost w-full flex items-center justify-center gap-2"
         >
-          <img
-            src="https://www.svgrepo.com/show/475656/google-color.svg"
-            alt="Google"
-            className="w-5 h-5"
-          />
+          <img src="google-color.svg" alt="Google" className="w-5 h-5" />
           <span>Sign up with Google</span>
         </button>
 
         {/* Footer */}
         <p className="text-center text-sm text-[var(--color-text-light)] mt-6">
           Already have an account?{" "}
-          <a href="#" className="font-semibold">
+          <Link href="/login" className="font-semibold">
             Log in
-          </a>
+          </Link>
         </p>
       </div>
     </div>
