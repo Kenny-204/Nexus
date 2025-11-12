@@ -1,4 +1,3 @@
-// app/(auth)/login/page.tsx
 "use client";
 
 import { motion } from "framer-motion";
@@ -24,19 +23,7 @@ export default function LoginPage() {
 
         <form className="space-y-4">
           {/* Full Name */}
-          <div className="relative">
-            <User
-              className="absolute left-4 top-3.5 text-[var(--color-primary)]"
-              size={20}
-            />
-            <input
-              type="text"
-              placeholder="Full Name"
-              className="input pl-12"
-              required
-            />
-          </div>
-
+         
           {/* Email */}
           <div className="relative">
             <Mail
