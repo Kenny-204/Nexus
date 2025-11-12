@@ -1,4 +1,3 @@
-import { authAdmin } from "@/lib/firebase/admin-config";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
@@ -10,17 +9,14 @@ export async function middleware(req: NextRequest) {
   }
 
   if (!token) {
-    url.pathname == "/login";
-    return NextResponse.redirect(url);
-  }
-
-  try {
-    await authAdmin.verifyIdToken(token);
-    return NextResponse.next();
-  } catch {
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
+  if ((token && url.pathname == "/login") || url.pathname == "/signup") {
+    url.pathname = "/home";
+    return NextResponse.redirect(url);
+  }
+  return NextResponse.next();
 }
 
 export const config = {
