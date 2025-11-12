@@ -8,17 +8,7 @@ const Signup: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[var(--color-bg-muted)] px-4">
-      {/* Logo */}
-      <div className="flex items-center gap-2 mb-8">
-        <div className="text-white bg-[var(--color-primary)] rounded-md px-2 py-1 font-bold text-lg">
-          e
-        </div>
-        <span className="text-[var(--color-primary)] font-semibold text-lg">
-          Nexus
-        </span>
-      </div>
-
+    <>
       {/* Card */}
       <div className="card w-full max-w-md p-6">
         <h1 className="text-2xl font-semibold text-center mb-6">Sign Up</h1>
@@ -122,7 +112,7 @@ const Signup: React.FC = () => {
           </Link>
         </p>
       </div>
-    </div>
+    </>
   );
 };
 

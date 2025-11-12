@@ -2,6 +2,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Mail, Lock, User, Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -14,89 +15,93 @@ export default function LoginPage() {
     // simulate login
     setTimeout(() => setLoading(false), 1500);
   }
-
+  const [showPassword, setShowPassword] = useState(false);
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="w-full max-w-sm rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:max-w-md lg:max-w-md"
-      >
-        <h1 className="text-center text-2xl font-semibold text-gray-800">
-          Welcome back
-        </h1>
-        <p className="mt-1 text-center text-gray-500 text-sm">
-          Sign in to continue
-        </p>
+    <>
+      {/* Card */}
+      <div className="card w-full max-w-md p-6">
+        <h1 className="text-2xl font-semibold text-center mb-6">Login</h1>
 
-        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-          <div>
-            <label htmlFor="email" className="block text-sm text-gray-600">
-              Email
-            </label>
+        <form className="space-y-4">
+          {/* Full Name */}
+          <div className="relative">
+            <User
+              className="absolute left-4 top-3.5 text-[var(--color-primary)]"
+              size={20}
+            />
             <input
-              id="email"
+              type="text"
+              placeholder="Full Name"
+              className="input pl-12"
+              required
+            />
+          </div>
+
+          {/* Email */}
+          <div className="relative">
+            <Mail
+              className="absolute left-4 top-3.5 text-[var(--color-primary)]"
+              size={20}
+            />
+            <input
               type="email"
+              placeholder="Email"
+              className="input pl-12"
               required
-              className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-700 focus:ring-0"
             />
           </div>
 
-          <div>
-            <label htmlFor="password" className="block text-sm text-gray-600">
-              Password
-            </label>
+          {/* Password */}
+          <div className="relative">
+            <Lock
+              className="absolute left-4 top-3.5 text-[var(--color-primary)]"
+              size={20}
+            />
             <input
-              id="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              className="input pl-12 pr-12"
               required
-              className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-gray-700 focus:ring-0"
             />
-          </div>
-
-          <div className="flex justify-end">
-            <Link
-              href="/forgot-password"
-              className="text-sm text-gray-600 hover:text-gray-800"
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-3.5 text-gray-500 hover:text-gray-700"
             >
-              Forgot password?
-            </Link>
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full rounded-lg bg-black py-2 text-white text-sm font-medium transition hover:bg-gray-900 disabled:opacity-50"
-          >
-            {loading ? "Signing in..." : "Sign in"}
-          </button>
-          <div className="relative my-4">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-gray-300"></span>
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-2 text-gray-500">
-                or continue with
-              </span>
-            </div>
-          </div>
-
-          <button
-            type="button"
-            className="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 py-2 text-sm font-medium hover:bg-gray-50"
-          >
-            Google
+          {/* Submit */}
+          <button type="submit" className="btn-primary w-full mt-2">
+            Sign Up
           </button>
         </form>
 
-        <p className="mt-4 text-center text-sm text-gray-600">
-          Don’t have an account?{" "}
-          <Link href="/signup" className="text-gray-900 font-medium">
-            Create one
+        {/* Divider */}
+        <div className="flex items-center my-6">
+          <hr className="flex-1 border-gray-200" />
+          <span className="mx-2 text-sm text-gray-400">or</span>
+          <hr className="flex-1 border-gray-200" />
+        </div>
+
+        {/* Google Sign Up */}
+        <button
+          type="button"
+          className="btn-ghost w-full flex items-center justify-center gap-2"
+        >
+          <img src="google-color.svg" alt="Google" className="w-5 h-5" />
+          <span>Sign up with Google</span>
+        </button>
+
+        {/* Footer */}
+        <p className="text-center text-sm text-[var(--color-text-light)] mt-6">
+          Are you new?{" "}
+          <Link href="/signup" className="font-semibold">
+            Sign Up
           </Link>
         </p>
-      </motion.div>
-    </div>
+      </div>
+    </>
   );
 }
