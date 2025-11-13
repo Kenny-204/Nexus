@@ -1,150 +1,141 @@
 "use client";
 
-import Image from "next/image";
-import { Star } from "lucide-react";
-import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import {
+  ChevronLeft,
+  Heart,
+  Share2,
+  ChevronRight,
+  CheckCircle,
+} from "lucide-react";
 
-// Mock product data
-const product = {
-  id: 1,
-  name: "Bluetooth Speaker",
-  images: ["/images/speaker.jpg", "/images/speaker2.jpg"],
-  rating: 4.5,
-  reviewsCount: 12,
-  category: "Electronics",
-  hostel: "Mariere",
-  description:
-    "Portable Bluetooth speaker with high-quality sound, long-lasting battery, and sleek design. Perfect for dorm rooms, parties, and outdoor use.",
-};
+interface GoodsDetailsProps {
+  title?: string;
+  price?: number;
+  category?: string;
+  condition?: string;
+  available?: number;
+  images?: string[];
+}
 
-// Mock seller data
-const seller = {
-  name: "Kenny's Tech Hub",
-  rating: 4.8,
-  totalReviews: 24,
-  profileImage: "/images/seller.jpg",
-  contactLink: "https://wa.me/2348012345678", // WhatsApp link
-};
+const GoodsDetails: React.FC<GoodsDetailsProps> = ({
+  title = "Designer Male Slides",
+  price = 28000,
+  category = "Fashion & Accessories",
+  condition = "Brand New",
+  available = 10,
+  images = [
+    "https://via.placeholder.com/600x400?text=Product+1",
+    "https://via.placeholder.com/600x400?text=Product+2",
+    "https://via.placeholder.com/600x400?text=Product+3",
+  ],
+}) => {
+  const [current, setCurrent] = useState(0);
 
-// Mock reviews
-const reviews = [
-  { id: 1, name: "Ade", rating: 5, comment: "Great speaker, loud and clear!" },
-  {
-    id: 2,
-    name: "Chidi",
-    rating: 4,
-    comment: "Good quality but a bit pricey.",
-  },
-  { id: 3, name: "Tosin", rating: 5, comment: "Love it! Battery lasts long." },
-];
-
-// Component
-export default function ProductPage() {
-  const router = useRouter();
+  const nextSlide = () => setCurrent((prev) => (prev + 1) % images.length);
+  const prevSlide = () =>
+    setCurrent((prev) => (prev - 1 + images.length) % images.length);
 
   return (
-    <main className="pb-32 px-4">
-      {/* Back Button */}
-      <button
-        onClick={() => router.back()}
-        className="text-gray-700 text-sm font-medium mb-3"
-      >
-        ← Back
-      </button>
-
-      {/* Product Images */}
-      <div className="relative w-full h-64 rounded-2xl overflow-hidden mb-4">
-        <Image
-          src="fan.webp"
-          alt={product.name}
-          fill
-          className="object-cover"
+    <div className="min-h-screen bg-[var(--color-bg-muted)] flex flex-col">
+      {/* Image Carousel */}
+      <div className="relative w-full h-72 bg-gray-100 overflow-hidden">
+        <img
+          src={images[current]}
+          alt={title}
+          className="w-full h-full object-cover transition-transform duration-300"
         />
+
+        {/* Top bar buttons */}
+        <div className="absolute top-4 left-4 flex gap-2">
+          <button className="bg-white/90 rounded-full p-2 shadow-sm hover:bg-white transition">
+            <ChevronLeft size={20} />
+          </button>
+        </div>
+
+        <div className="absolute top-4 right-4 flex gap-2">
+          <button className="bg-white/90 rounded-full p-2 shadow-sm hover:bg-white transition">
+            <Share2 size={20} />
+          </button>
+          <button className="bg-white/90 rounded-full p-2 shadow-sm hover:bg-white transition">
+            <Heart size={20} />
+          </button>
+        </div>
+
+        {/* Pagination */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1">
+          {images.map((_, i) => (
+            <div
+              key={i}
+              className={`w-2 h-2 rounded-full ${
+                i === current ? "bg-[var(--color-primary)]" : "bg-gray-300"
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Navigation */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 p-1.5 rounded-full"
+        >
+          <ChevronLeft size={18} />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 p-1.5 rounded-full"
+        >
+          <ChevronRight size={18} />
+        </button>
       </div>
 
-      {/* Product Info */}
-      <div className="mb-4">
-        <h1 className="text-xl font-semibold mb-1">{product.name}</h1>
-        <div className="flex items-center gap-2 text-yellow-500 mb-1">
-          <Star size={16} fill="currentColor" />
-          <span className="text-gray-700 font-medium">{product.rating}</span>
-          <span className="text-gray-400 text-sm">
-            ({product.reviewsCount} reviews)
+      {/* Content */}
+      <div className="flex-1 bg-white rounded-t-2xl shadow-sm -mt-4 p-5">
+        <h1 className="text-lg font-semibold mb-1">{title}</h1>
+        <p className="text-[var(--color-primary)] text-xl font-bold mb-1">
+          ₦{price.toLocaleString()}
+          <span className="text-sm text-gray-400 font-normal ml-1">
+            Best Price
+          </span>
+        </p>
+
+        {/* Chips */}
+        <div className="flex items-center gap-2 mb-4 mt-2">
+          <span className="text-xs bg-blue-50 text-[var(--color-primary)] px-3 py-1 rounded-full">
+            {category}
+          </span>
+          <span className="text-xs bg-green-50 text-green-600 px-3 py-1 rounded-full">
+            ITEM
           </span>
         </div>
-        <p className="text-gray-500 text-sm mb-1">{product.category}</p>
-        <p className="text-gray-500 text-sm mb-1">{product.hostel}</p>
-      </div>
 
-      {/* Seller Info */}
-      <div className="flex items-center gap-3 mb-4 p-3 bg-white rounded-2xl shadow-sm border border-gray-100">
-        <div className="w-12 h-12 relative rounded-full overflow-hidden">
-          <Image
-            src="fan.webp"
-            alt={seller.name}
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="flex-1">
-          <p className="font-medium">{seller.name}</p>
-          <div className="flex items-center gap-1 text-yellow-500 text-sm">
-            <Star size={12} fill="currentColor" />
-            <span className="text-gray-700">{seller.rating}</span>
-            <span className="text-gray-400 text-xs">
-              ({seller.totalReviews} reviews)
+        {/* Item Details */}
+        <div className="card p-4 space-y-2">
+          <h2 className="font-medium text-[var(--color-text-dark)] mb-2">
+            Item Details
+          </h2>
+          <div className="flex items-center justify-between text-sm">
+            <span>Condition</span>
+            <div className="flex items-center gap-1 text-green-600 font-medium">
+              <CheckCircle size={14} />
+              {condition}
+            </div>
+          </div>
+          <div className="flex items-center justify-between text-sm">
+            <span>Available</span>
+            <span className="font-medium text-[var(--color-text-dark)]">
+              {available} items
             </span>
           </div>
         </div>
-        <a
-          href={seller.contactLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium hover:bg-green-700 transition"
-        >
-          Contact
-        </a>
       </div>
 
-      {/* Product Description */}
-      <div className="mb-4">
-        <h2 className="font-semibold text-gray-800 mb-2">Description</h2>
-        <p className="text-gray-600 text-sm">{product.description}</p>
+      {/* Bottom Buy Now Button */}
+      <div className="sticky bottom-0 bg-white border-t border-gray-100 p-4">
+        <button className="btn-primary w-full py-3 text-base">Buy Now</button>
       </div>
-
-      {/* Reviews */}
-      <div className="mb-32">
-        <h2 className="font-semibold text-gray-800 mb-2">Reviews</h2>
-        <div className="flex flex-col gap-3">
-          {reviews.map((review) => (
-            <div
-              key={review.id}
-              className="p-3 bg-white rounded-2xl shadow-sm border border-gray-100"
-            >
-              <div className="flex items-center gap-2 mb-1">
-                <p className="font-medium text-gray-800">{review.name}</p>
-                <div className="flex items-center gap-1 text-yellow-500 text-xs">
-                  <Star size={12} fill="currentColor" />
-                  <span className="text-gray-700">{review.rating}</span>
-                </div>
-              </div>
-              <p className="text-gray-600 text-sm">{review.comment}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Sticky Contact Seller Button (above BottomNav) */}
-      <div className="fixed bottom-16 left-0 w-full p-4 bg-white border-t border-gray-200">
-        <a
-          href={seller.contactLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full block bg-green-600 text-white py-3 rounded-2xl font-medium text-center hover:bg-green-700 transition"
-        >
-          Contact Seller
-        </a>
-      </div>
-    </main>
+    </div>
   );
-}
+};
+
+export default GoodsDetails;

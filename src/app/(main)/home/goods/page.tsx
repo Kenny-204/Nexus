@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Search, Heart } from "lucide-react";
+import Link from "next/link";
 
 const mockGoods = [
   {
@@ -62,30 +63,30 @@ export default function GoodsPage() {
 
       {/* Categories */}
       <div className="flex justify-between text-center text-sm">
-        <div className="flex flex-col items-center gap-1">
+        <Link href="#" className="flex flex-col items-center gap-1">
           <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
             <img src="/icons/gadgets.svg" className="w-6 h-6" alt="" />
           </div>
           <p>Gadgets</p>
-        </div>
-        <div className="flex flex-col items-center gap-1">
+        </Link>
+        <Link href="#" className="flex flex-col items-center gap-1">
           <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
             <img src="/icons/fashion.svg" className="w-6 h-6" alt="" />
           </div>
           <p>Fashion</p>
-        </div>
-        <div className="flex flex-col items-center gap-1">
+        </Link>
+        <Link href="#" className="flex flex-col items-center gap-1">
           <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
             <img src="/icons/services.svg" className="w-6 h-6" alt="" />
           </div>
           <p>Services</p>
-        </div>
-        <div className="flex flex-col items-center gap-1">
+        </Link>
+        <Link href="#" className="flex flex-col items-center gap-1">
           <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
             <img src="/icons/more.svg" className="w-6 h-6" alt="" />
           </div>
           <p>More</p>
-        </div>
+        </Link>
       </div>
 
       {/* Recommended Section */}
@@ -100,7 +101,8 @@ export default function GoodsPage() {
 
         <div className="grid grid-cols-2 gap-4">
           {filteredGoods.map((item) => (
-            <div
+            <Link
+              href={`${item.id}`}
               key={item.id}
               className="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100"
             >
@@ -132,7 +134,7 @@ export default function GoodsPage() {
                   )}
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
