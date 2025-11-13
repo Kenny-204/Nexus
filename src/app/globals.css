@@ -59,6 +59,7 @@ a:hover {
   color: white;
   font-weight: 600;
   border-radius: 9999px;
+  cursor: pointer;
   padding: 0.625rem 1.25rem;
   transition:
     background-color var(--transition),
@@ -72,6 +73,7 @@ a:hover {
 
 .btn-ghost {
   background-color: white;
+  cursor: pointer;
   border: 1px solid #e5e7eb;
   color: var(--color-text-dark);
   border-radius: 9999px;

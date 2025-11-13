@@ -1,21 +1,14 @@
 "use client";
-import {
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-  User,
-  UserCredential,
-} from "firebase/auth";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../firebase/config";
+import { supabase } from "../supabase/clientConfig";
+import { User } from "@supabase/supabase-js";
 
 interface value {
   currentUser: User | null;
-  signup: (email: string, password: string) => Promise<UserCredential>;
-  login: (email: string, passoword: string) => Promise<UserCredential>;
+  signup: (email: string, password: string) => Promise<void>;
+  login: (email: string, passoword: string) => Promise<void>;
   logout: () => Promise<void>;
-  googleSignIn: () => void;
   passwordReset: (email: string) => Promise<void>;
 }
 const AuthContext = createContext<value | null>(null);
@@ -32,38 +25,44 @@ export function Authprovider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      setCurrentUser(user);
-      setLoading(false);
-      if (user) {
-        const token = await user.getIdToken();
-        await fetch("/api/session", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ token }),
-        });
-      }
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setCurrentUser(session?.user ?? null);
     });
 
-    return () => unsubscribe();
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setCurrentUser(session?.user ?? null);
+      setLoading(false);
+    });
+    return () => subscription.unsubscribe();
   }, [currentUser]);
 
-  function signup(email: string, password: string) {
-    return createUserWithEmailAndPassword(auth, email, password);
+  async function signup(email: string, password: string) {
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        emailRedirectTo: "http://localhost:3000/home",
+      },
+    });
   }
 
-  function login(email: string, password: string) {
-    return signInWithEmailAndPassword(auth, email, password);
+  async function login(email: string, password: string) {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
   }
 
   function googleSignIn() {}
 
-  function passwordReset(email: string) {
-    return sendPasswordResetEmail(auth, email);
+  async function passwordReset(email: string) {
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email);
   }
 
-  function logout() {
-    return auth.signOut();
+  async function logout() {
+    const { error } = await supabase.auth.signOut();
   }
 
   const value = {
@@ -72,7 +71,6 @@ export function Authprovider({ children }: { children: React.ReactNode }) {
     signup,
     passwordReset,
     logout,
-    googleSignIn,
   };
   return (
     <AuthContext.Provider value={value}>

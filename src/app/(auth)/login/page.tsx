@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Lock, User, Eye, EyeOff } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function LoginPage() {
+export default function Page() {
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -23,7 +23,7 @@ export default function LoginPage() {
 
         <form className="space-y-4">
           {/* Full Name */}
-         
+
           {/* Email */}
           <div className="relative">
             <Mail
@@ -61,7 +61,7 @@ export default function LoginPage() {
 
           {/* Submit */}
           <button type="submit" className="btn-primary w-full mt-2">
-            Sign Up
+            Login
           </button>
         </form>
 

@@ -1,11 +1,27 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Mail, Lock, User, Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
+import { useAuth } from "@/lib/contexts/AuthContext";
+import { useForm } from "react-hook-form";
 
-const Signup: React.FC = () => {
+export default function Page() {
   const [showPassword, setShowPassword] = useState(false);
+const [loading,setLoading] = useState(false)
+  const { signup } = useAuth();
+  const { register, handleSubmit } = useForm();
+
+  async function onSubmit(data) {
+    setLoading(true)
+    try{
+    await signup(data.email, data.password);
+    console.log('signed up')
+    }catch(err){
+      console.log(err)
+    }
+    finally{setLoading(false)}
+  }
 
   return (
     <>
@@ -13,7 +29,7 @@ const Signup: React.FC = () => {
       <div className="card w-full max-w-md p-6">
         <h1 className="text-2xl font-semibold text-center mb-6">Sign Up</h1>
 
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           {/* Full Name */}
           <div className="relative">
             <User
@@ -24,7 +40,7 @@ const Signup: React.FC = () => {
               type="text"
               placeholder="Full Name"
               className="input pl-12"
-              required
+              {...register("fullName")}
             />
           </div>
 
@@ -38,7 +54,7 @@ const Signup: React.FC = () => {
               type="email"
               placeholder="Email"
               className="input pl-12"
-              required
+              {...register("email")}
             />
           </div>
 
@@ -52,11 +68,12 @@ const Signup: React.FC = () => {
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               className="input pl-12 pr-12"
-              required
+              {...register("password")}
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
+              disabled={loading}
               className="absolute right-4 top-3.5 text-gray-500 hover:text-gray-700"
             >
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -71,7 +88,6 @@ const Signup: React.FC = () => {
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               className="input pl-12 pr-12"
-              required
             />
             <button
               type="button"
@@ -114,6 +130,4 @@ const Signup: React.FC = () => {
       </div>
     </>
   );
-};
-
-export default Signup;
+}
