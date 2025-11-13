@@ -2,31 +2,37 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-blue-50 p-5 flex flex-col items-center justify-center lg:flex-row lg:gap-6 lg:p-10">
+    <main className="min-h-screen bg-[var(--color-bg-muted)] flex flex-col items-center justify-center gap-6 p-6 lg:flex-row lg:p-10">
+      {/* Goods Card */}
       <div className="w-full lg:w-1/2">
-        <div className="rounded-2xl bg-white shadow-md hover:shadow-lg transition p-8 flex flex-col items-start justify-between h-48">
-          <h2 className="text-xl font-semibold text-gray-800">Goods</h2>
-          <p className="text-sm text-gray-500">
+        <div className="card hover:shadow-lg transition-shadow duration-300 p-8 flex flex-col justify-between h-48">
+          <h2 className="text-xl font-semibold text-[var(--color-text-dark)]">
+            Goods
+          </h2>
+          <p className="text-sm text-[var(--color-text-light)]">
             Explore physical products, items, and deals near you.
           </p>
           <Link
             href="/home/goods"
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700"
+            className="btn-primary mt-4 text-sm px-5 py-2"
           >
             View Goods
           </Link>
         </div>
       </div>
 
-      <div className="w-full mt-5 lg:mt-0 lg:w-1/2">
-        <div className="rounded-2xl bg-white shadow-md hover:shadow-lg transition p-8 flex flex-col items-start justify-between h-48">
-          <h2 className="text-xl font-semibold text-gray-800">Services</h2>
-          <p className="text-sm text-gray-500">
+      {/* Services Card */}
+      <div className="w-full lg:w-1/2">
+        <div className="card hover:shadow-lg transition-shadow duration-300 p-8 flex flex-col justify-between h-48">
+          <h2 className="text-xl font-semibold text-[var(--color-text-dark)]">
+            Services
+          </h2>
+          <p className="text-sm text-[var(--color-text-light)]">
             Find people offering professional or freelance services.
           </p>
           <Link
             href="/home/services"
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700"
+            className="btn-primary mt-4 text-sm px-5 py-2"
           >
             View Services
           </Link>

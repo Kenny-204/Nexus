@@ -1,25 +1,62 @@
 import Link from "next/link";
+
 export default function TopNav() {
   return (
-    <nav className="max-lg:hidden lg:flex justify-between p-3 border-b-gray-200 border-b ">
-      <div>
-        <Link href="/">Logo</Link>
+    <nav className="max-lg:hidden lg:flex items-center justify-between px-8 py-4 border-b border-gray-100 bg-white shadow-sm">
+      {/* Logo */}
+      <div className="flex items-center gap-2">
+        <div className="bg-[var(--color-primary)] text-white font-bold rounded-md px-2 py-1 text-lg">
+          e
+        </div>
+        <span className="text-[var(--color-primary)] font-semibold text-lg">
+          CAMPORA
+        </span>
       </div>
+
+      {/* Nav Links */}
+      <ul className="flex items-center gap-6 text-[var(--color-text-dark)] font-medium">
+        <li>
+          <Link
+            href="/"
+            className="hover:text-[var(--color-primary)] transition-colors duration-200"
+          >
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="#"
+            className="hover:text-[var(--color-primary)] transition-colors duration-200"
+          >
+            Search
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="#"
+            className="hover:text-[var(--color-primary)] transition-colors duration-200"
+          >
+            Messages
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="#"
+            className="hover:text-[var(--color-primary)] transition-colors duration-200"
+          >
+            Profile
+          </Link>
+        </li>
+      </ul>
+
+      {/* Auth / CTA */}
       <div>
-        <ul className="flex gap-3">
-          <li>
-            <Link href="#">Home</Link>
-          </li>
-          <li>
-            <Link href="#">Search</Link>
-          </li>
-          <li>
-            <Link href="#">Messages</Link>
-          </li>
-          <li>
-            <Link href="#">Profile</Link>
-          </li>
-        </ul>
+        <Link
+          href="/login"
+          className="btn-primary px-6 py-2 text-sm font-semibold shadow-sm"
+        >
+          Sign In
+        </Link>
       </div>
     </nav>
   );
