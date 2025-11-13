@@ -6,21 +6,29 @@ import Link from "next/link";
 import { useAuth } from "@/lib/contexts/AuthContext";
 import { useForm } from "react-hook-form";
 
+interface signupData {
+  fullName: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+}
+
 export default function Page() {
   const [showPassword, setShowPassword] = useState(false);
-const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const { signup } = useAuth();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<signupData>();
 
-  async function onSubmit(data) {
-    setLoading(true)
-    try{
-    await signup(data.email, data.password);
-    console.log('signed up')
-    }catch(err){
-      console.log(err)
+  async function onSubmit(data: signupData) {
+    setLoading(true);
+    try {
+      await signup(data.email, data.password);
+      console.log("signed up");
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
     }
-    finally{setLoading(false)}
   }
 
   return (
