@@ -27,6 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="apple-touch-icon" href="icons/apple-icon-180.png" />
+        <link rel="icon" href="favicon.svg" type="image/png" />
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
 
