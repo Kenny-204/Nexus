@@ -102,7 +102,7 @@ export default function GoodsPage() {
         <div className="grid grid-cols-2 gap-4">
           {filteredGoods.map((item) => (
             <Link
-              href={`${item.id}`}
+              href={`goods/${item.id}`}
               key={item.id}
               className="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100"
             >
