@@ -3,7 +3,7 @@ import { Package, Briefcase } from "lucide-react";
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-[var(--color-bg-muted)] flex flex-col items-center justify-center gap-6 p-6 lg:flex-row lg:p-10">
+    <main className="min-h-screen bg-[var(--color-bg-muted)] flex flex-col items-center justify-center gap-6 p-6 lg:flex-row lg:p-10 overflow-y-hidden">
       {/* Goods Card */}
       <Link
         href="/home/goods"

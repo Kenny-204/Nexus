@@ -41,7 +41,7 @@ export default function TopNav() {
         </li>
         <li>
           <Link
-            href="#"
+            href="/profile"
             className="hover:text-[var(--color-primary)] transition-colors duration-200"
           >
             Profile
