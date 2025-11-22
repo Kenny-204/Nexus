@@ -1,4 +1,4 @@
-import { Search, Smartphone, Shirt, Briefcase, Grid } from "lucide-react";
+import { Search, Smartphone, Shirt, Briefcase, Grid, Star, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,35 +10,80 @@ const categories = [
 ];
 
 const recommended = [
-  {
-    id: 1,
-    title: "Designer Male Slides",
-    price: "₦28,000",
-    image: "/images/slides.jpg",
-    location: "Unilag",
-    tag: "ITEM",
-  },
-  {
-    id: 2,
-    title: "Stainless Steel Necklace & Earrings Set",
-    price: "₦3,000",
-    image: "/images/necklace.jpg",
-    location: "Unilag",
-    tag: "ITEM",
-  },
+  { id: 1, title: "Designer Male Slides", price: "₦28,000", image: "/fan.webp", hostel: "Jaja", tag: "ITEM" },
+  { id: 2, title: "Stainless Steel Necklace & Earrings Set", price: "₦3,000", image: "/fan.webp", hostel: "Ogun", tag: "ITEM" },
 ];
 
 const featured = [
-  { id: 3, title: "Two Piece Available", price: "₦12,000" },
-  { id: 4, title: "Stock Jeans Available", price: "₦15,000" },
+  { id: 3, title: "Two Piece Available", price: "₦12,000", image: "/fan.webp", hostel: "Yaba", tag: "FEATURED" },
+  { id: 4, title: "Stock Jeans Available", price: "₦15,000", image: "/fan.webp", hostel: "Baba-Tunde", tag: "FEATURED" },
+];
+
+const newListings = [
+  { id: 5, title: "Casual Sneakers", price: "₦20,000", image: "/fan.webp", hostel: "Jaja", tag: "NEW" },
+  { id: 6, title: "Leather Bag", price: "₦18,000", image: "/fan.webp", hostel: "Ogun", tag: "NEW" },
+  { id: 7, title: "Smartwatch Series 5", price: "₦45,000", image: "/fan.webp", hostel: "Yaba", tag: "NEW" },
+  { id: 8, title: "Denim Jacket", price: "₦22,000", image: "/fan.webp", hostel: "Baba-Tunde", tag: "NEW" },
 ];
 
 export default function Page() {
+  const renderCard = (item: typeof recommended[0]) => (
+    <Link
+      href={`goods/${item.id}`}
+      key={item.id}
+      className="flex-shrink-0 w-48 bg-white rounded-xl shadow-sm overflow-hidden snap-start"
+    >
+      <div className="relative">
+        <Image
+          src={item.image}
+          alt={item.title}
+          width={192}
+          height={120}
+          className="object-cover w-full h-32"
+        />
+        <span className="absolute top-2 right-2 bg-blue-600 text-white text-[10px] px-2 py-1 rounded-md">
+          {item.tag}
+        </span>
+      </div>
+      <div className="p-2">
+        <h3 className="text-sm font-semibold text-gray-800 truncate">{item.title}</h3>
+        <p className="text-blue-600 text-sm font-medium">{item.price}</p>
+        <p className="text-xs text-gray-500">{item.hostel}</p>
+      </div>
+    </Link>
+  );
+
+  const renderGridCard = (item: typeof featured[0]) => (
+    <Link
+      href={`/goods/${item.id}`}
+      key={item.id}
+      className="bg-white rounded-xl shadow-sm overflow-hidden"
+    >
+      <div className="relative">
+        <Image
+          src={item.image}
+          alt={item.title}
+          width={192}
+          height={120}
+          className="object-cover w-full h-32"
+        />
+        <span className="absolute top-2 right-2 bg-blue-600 text-white text-[10px] px-2 py-1 rounded-md">
+          {item.tag}
+        </span>
+      </div>
+      <div className="p-2">
+        <h3 className="text-sm font-semibold text-gray-800 truncate">{item.title}</h3>
+        <p className="text-blue-600 text-sm font-medium">{item.price}</p>
+        <p className="text-xs text-gray-500">{item.hostel}</p>
+      </div>
+    </Link>
+  );
+
   return (
     <main className="pb-20">
-      {/* Top Nav / Header */}
-      <header className="flex items-center justify-between p-4">
-        <h1 className="text-xl font-bold text-blue-600">Campora</h1>
+      {/* Mobile Header */}
+      <header className="flex items-center justify-between p-4 md:hidden">
+        <h1 className="text-xl font-bold text-blue-600">Nexus</h1>
         <button className="p-2 rounded-full bg-blue-50">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -57,8 +102,8 @@ export default function Page() {
         </button>
       </header>
 
-      {/* Search Bar */}
-      <div className="px-4">
+      {/* Search */}
+      <div className="px-4 mt-4">
         <div className="flex items-center gap-2 bg-gray-100 rounded-full p-3">
           <Search className="text-gray-400" size={18} />
           <input
@@ -72,10 +117,7 @@ export default function Page() {
       {/* Categories */}
       <section className="flex justify-between px-6 mt-6">
         {categories.map(({ icon: Icon, label }) => (
-          <div
-            key={label}
-            className="flex flex-col items-center text-sm text-gray-600"
-          >
+          <div key={label} className="flex flex-col items-center text-sm text-gray-600">
             <div className="p-3 rounded-full bg-blue-50 text-blue-600">
               <Icon size={20} />
             </div>
@@ -84,79 +126,31 @@ export default function Page() {
         ))}
       </section>
 
-      {/* Recommended */}
+      {/* Recommended (horizontal scroll) */}
       <section className="mt-8 px-4">
         <h2 className="font-semibold text-gray-800 flex items-center gap-2">
-          <span className="text-blue-600">♥</span> Recommended for you
+          <Heart className="text-blue-600" size={18} /> Recommended for you
         </h2>
-
-        <div className="flex gap-4 overflow-x-auto mt-4 pb-2">
-          {recommended.map((item) => (
-            <Link
-              href={`/goods/${item.id}`}
-              key={item.id}
-              className="min-w-[180px] bg-white rounded-xl shadow-sm overflow-hidden"
-            >
-              <div className="relative">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={180}
-                  height={120}
-                  className="object-cover w-full h-32"
-                />
-                <span className="absolute top-2 right-2 bg-blue-600 text-white text-[10px] px-2 py-1 rounded-md">
-                  {item.tag}
-                </span>
-              </div>
-              <div className="p-2">
-                <h3 className="text-sm font-semibold text-gray-800 truncate">
-                  {item.title}
-                </h3>
-                <p className="text-blue-600 text-sm font-medium">
-                  {item.price}
-                </p>
-                <p className="text-xs text-gray-500">{item.location}</p>
-              </div>
-            </Link>
-          ))}
+        <div className="flex gap-4 overflow-x-auto mt-4 pb-2 snap-x snap-mandatory">
+          {recommended.map(renderCard)}
         </div>
       </section>
 
-      {/* Featured */}
+      {/* New Listings (grid) */}
       <section className="mt-8 px-4">
-        <h2 className="font-semibold text-gray-800">Featured Listings</h2>
-        <div className="flex gap-4 overflow-x-auto mt-4 pb-2">
-          {featured.map((item) => (
-            <div
-              key={item.id}
-              className="min-w-[150px] bg-white rounded-xl shadow-sm p-3"
-            >
-              <h3 className="text-sm font-semibold text-gray-800">
-                {item.title}
-              </h3>
-              <p className="text-blue-600 text-sm font-medium">{item.price}</p>
-            </div>
-          ))}
+        <h2 className="font-semibold text-gray-800 flex items-center gap-2 mb-4">
+          <Star className="text-blue-600" size={20} /> New Listings
+        </h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {newListings.map(renderGridCard)}
         </div>
       </section>
 
-      {/* New Listings */}
+      {/* Featured Listings (grid) */}
       <section className="mt-8 px-4 mb-20">
-        <h2 className="font-semibold text-gray-800">New Listings</h2>
-        <div className="grid grid-cols-2 gap-4 mt-4">
-          {[...Array(4)].map((_, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-xl shadow-sm p-3 h-40 flex flex-col justify-between"
-            >
-              <div className="bg-gray-100 h-24 rounded-lg"></div>
-              <h3 className="text-sm font-semibold text-gray-800">
-                Product {i + 1}
-              </h3>
-              <p className="text-blue-600 text-sm font-medium">₦{i + 1}0,000</p>
-            </div>
-          ))}
+        <h2 className="font-semibold text-gray-800 mb-4">Featured Listings</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {featured.map(renderGridCard)}
         </div>
       </section>
     </main>

@@ -18,6 +18,7 @@ export default function BottomNav() {
     <nav className="fixed bottom-0 left-0 w-full lg:hidden border-t border-gray-200 bg-white/80 backdrop-blur-md">
       <ul className="flex justify-around">
         {navItems.map(({ href, label, icon: Icon }) => {
+       
           const active = pathname === href;
           return (
             <li key={href}>
@@ -37,9 +38,8 @@ export default function BottomNav() {
                   className={`z-10 ${active ? "text-blue-600" : "text-gray-500"}`}
                 />
                 <p
-                  className={`text-xs mt-1 z-10 ${
-                    active ? "text-blue-600 font-medium" : "text-gray-500"
-                  }`}
+                  className={`text-xs mt-1 z-10 ${active ? "text-blue-600 font-medium" : "text-gray-500"
+                    }`}
                 >
                   {label}
                 </p>
