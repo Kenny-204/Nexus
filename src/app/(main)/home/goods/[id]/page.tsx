@@ -150,7 +150,7 @@ const GoodsDetails: React.FC<GoodsDetailsProps> = ({
                   ? "border-b-2 border-blue-600 text-blue-600"
                   : "text-gray-500 hover:text-blue-600"
               } transition`}
-              onClick={() => setActiveTab(tab as any)}
+              onClick={() => setActiveTab(tab as "details" | "seller" | "reviews")}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
             </button>
