@@ -10,8 +10,8 @@ const categories = [
 ];
 
 const recommended = [
-  { id: 1, title: "Designer Male Slides", price: "₦28,000", image: "/fan.webp", hostel: "Jaja", tag: "ITEM" },
-  { id: 2, title: "Stainless Steel Necklace & Earrings Set", price: "₦3,000", image: "/fan.webp", hostel: "Ogun", tag: "ITEM" },
+  { id: 1, title: "Designer Male Slides", price: "₦28,000", image: "/designer-men.jpg", hostel: "Jaja", tag: "ITEM" },
+  { id: 2, title: "Stainless Steel Necklace & Earrings Set", price: "₦3,000", image: "/stainless-steel.webp", hostel: "Ogun", tag: "ITEM" },
 ];
 
 const featured = [
@@ -20,10 +20,10 @@ const featured = [
 ];
 
 const newListings = [
-  { id: 5, title: "Casual Sneakers", price: "₦20,000", image: "/fan.webp", hostel: "Jaja", tag: "NEW" },
-  { id: 6, title: "Leather Bag", price: "₦18,000", image: "/fan.webp", hostel: "Ogun", tag: "NEW" },
-  { id: 7, title: "Smartwatch Series 5", price: "₦45,000", image: "/fan.webp", hostel: "Yaba", tag: "NEW" },
-  { id: 8, title: "Denim Jacket", price: "₦22,000", image: "/fan.webp", hostel: "Baba-Tunde", tag: "NEW" },
+  { id: 5, title: "Casual Sneakers", price: "₦20,000", image: "/casual-slippers.jpeg", hostel: "Jaja", tag: "NEW" },
+  { id: 6, title: "Leather Bag", price: "₦18,000", image: "/leather-bag.jpg", hostel: "Ogun", tag: "NEW" },
+  { id: 7, title: "Smartwatch Series 5", price: "₦45,000", image: "/smart-watch.jpg", hostel: "Yaba", tag: "NEW" },
+  { id: 8, title: "Denim Jacket", price: "₦22,000", image: "/denim-jacket.jpg", hostel: "Baba-Tunde", tag: "NEW" },
 ];
 
 export default function Page() {
